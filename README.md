@@ -27,16 +27,16 @@ https://heart-disease-prediction-devops-priyanshu2835.streamlit.app/
 ## Screenshots
 
 ### Home Page
+![Home](./images/home.png)
 
-![Home](images/home.png)
+### Prediction Page
+![Prediction](./images/predict.png)
 
-### Prediction
+### Result Page
+![Result](./images/result.png)
 
-![Prediction](images/predict.png)
-
-### Result
-
-![Result](images/result.png)
+### GitHub Actions
+![Actions](./images/actions.png)
 
 ## Run Locally
 
