@@ -4,7 +4,7 @@ AI-powered Heart Disease Prediction system built using Machine Learning and DevO
 
 ## Live Demo
 
-https://your-app-name.streamlit.app
+https://heart-disease-prediction-devops-priyanshu2835.streamlit.app/
 
 ## Features
 
