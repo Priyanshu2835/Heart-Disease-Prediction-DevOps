@@ -4,35 +4,61 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 import joblib
+import os
 
 print("Loading dataset...")
 
-# Load dataset
-df = pd.read_csv(
-    "C:/Users/Priyanshu Kumar/Desktop/Heart-Disease-Prediction-DevOps/data/heart.csv"
-)
+# Load data
+df = pd.read_csv("data/heart.csv")
 
 print(df.head())
 
-# Remove ID column
-df = df.drop("id", axis=1)
+# Remove ID if exists
+if "id" in df.columns:
+    df.drop("id", axis=1, inplace=True)
 
-# Convert ALL categorical columns
-for col in df.columns:
-    if df[col].dtype == "object" or str(df[col].dtype) == "string" or str(df[col].dtype) == "str":
-        le = LabelEncoder()
-        df[col] = le.fit_transform(df[col].astype(str))
-
-# Convert True/False if present
+# Convert bool → int
 df = df.replace({True: 1, False: 0})
 
-# Fill missing values
-df = df.fillna(df.mean())
+# Fill missing values safely
+for col in df.columns:
+
+    # Check for text columns
+    if (
+        df[col].dtype == "object"
+        or str(df[col].dtype).startswith("string")
+    ):
+
+        # fill with most frequent value
+        df[col] = df[col].fillna(df[col].mode()[0])
+
+    else:
+        # numeric column
+        df[col] = pd.to_numeric(df[col], errors="coerce")
+        df[col] = df[col].fillna(df[col].mean())
+
+# Encode categorical columns
+label_encoders = {}
+
+for col in df.columns:
+
+    if (
+        df[col].dtype == "object"
+        or str(df[col].dtype).startswith("string")
+    ):
+
+        le = LabelEncoder()
+
+        df[col] = le.fit_transform(
+            df[col].astype(str)
+        )
+
+        label_encoders[col] = le
 
 print("\nData types after conversion:")
 print(df.dtypes)
 
-# Features and target
+# Features & target
 X = df.drop("num", axis=1)
 y = df["num"]
 
@@ -44,8 +70,8 @@ X_train, X_test, y_train, y_test = train_test_split(
     random_state=42
 )
 
-# Train
 print("Training model...")
+
 model = RandomForestClassifier(
     n_estimators=100,
     random_state=42
@@ -53,14 +79,16 @@ model = RandomForestClassifier(
 
 model.fit(X_train, y_train)
 
-# Test
+# Prediction
 y_pred = model.predict(X_test)
 
 acc = accuracy_score(y_test, y_pred)
 
-print("Accuracy:", acc)
+print("\nAccuracy:", acc)
 
-# Save model
+# Create model folder if absent
+os.makedirs("model", exist_ok=True)
+
 joblib.dump(model, "model/heart_model.pkl")
 
 print("Model saved successfully!")
