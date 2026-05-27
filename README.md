@@ -1,9 +1,8 @@
 # 🫀 HeartGuard: Heart Disease Prediction System with Automated CI/CD Pipeline
-
-![Heart Disease Prediction](https://img.shields.io/badge/ML-Heart%20Disease%20Prediction-red)
-![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-brightgreen)
-![Docker](https://img.shields.io/badge/Docker-Containerized-blue)
-![Streamlit App](https://img.shields.io/badge/Streamlit-Live%20App-ff4b4b)
+[![Heart Disease Prediction](https://img.shields.io/badge/ML-Heart%20Disease%20Prediction-red)](https://github.com/Priyanshu2835/Heart-Disease-Prediction-DevOps)
+[![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-brightgreen)](https://github.com/Priyanshu2835/Heart-Disease-Prediction-DevOps/actions)
+[![Docker](https://img.shields.io/badge/Docker-Containerized-blue)](https://github.com/Priyanshu2835/Heart-Disease-Prediction-DevOps/blob/main/Dockerfile)
+[![Streamlit App](https://img.shields.io/badge/Streamlit-Live%20App-ff4b4b)](https://heart-disease-prediction-devops-priyanshu2835.streamlit.app/)
 
 **HeartGuard** is a production-ready, resume-grade Machine Learning web application built to predict the likelihood of heart disease in patients and deliver interactive, real-time predictions through a clean clinical UI.
 
@@ -212,7 +211,7 @@ The application is deployed on **Streamlit Community Cloud**:
 4. Branch: `main` | Main file: `app.py`
 5. Click **Deploy**.
 
-🔗 **Live App:** *(Add your Streamlit deployment URL here)*
+🔗 **Live App:** [heart-disease-prediction-devops-priyanshu2835.streamlit.app](https://heart-disease-prediction-devops-priyanshu2835.streamlit.app/)
 
 ---
 
